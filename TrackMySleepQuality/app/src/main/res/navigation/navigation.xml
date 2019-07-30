@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/navigation" app:startDestination="@id/sleepTrackerFragment">
+
+    <fragment android:id="@+id/sleepTrackerFragment"
+              android:name="com.example.duong.trackmysleepquality.screentracker.SleepTrackerFragment"
+              android:label="SleepTrackerFragment">
+
+        <action android:id="@+id/action_sleepTrackerFragment_to_sleepQuanlityFragment"
+                app:destination="@id/sleepQuanlityFragment"/>
+
+        <action android:id="@+id/action_sleepTrackerFragment_to_sleepDetailFragment"
+                app:destination="@id/sleepDetailFragment"/>
+    </fragment>
+
+    <fragment android:id="@+id/sleepQuanlityFragment"
+              android:name="com.example.duong.trackmysleepquality.screenquanlity.SleepQuanlityFragment"
+              android:label="SleepQuanlityFragment">
+
+        <action android:id="@+id/action_sleepQuanlityFragment_to_sleepTrackerFragment"
+                app:destination="@id/sleepTrackerFragment"
+                app:popUpTo="@+id/sleepTrackerFragment"
+                app:popUpToInclusive="true"/>
+        <argument android:name="sleepNightKey"
+                  app:argType="long"/>
+
+    </fragment>
+
+    <fragment android:id="@+id/sleepDetailFragment"
+              android:name="com.example.duong.trackmysleepquality.screendetail.SleepDetailFragment"
+              android:label="SleepDetailFragment">
+
+        <action android:id="@+id/action_sleepDetailFragment_to_sleepTrackerFragment"
+                app:popUpTo="@+id/sleepTrackerFragment"
+                app:popUpToInclusive="true"
+                app:destination="@id/sleepTrackerFragment"/>
+
+        <argument android:name="sleepNightKey"
+                  app:argType="long"/>
+    </fragment>
+</navigation>

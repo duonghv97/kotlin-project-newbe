@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <!--do trong adapter có binding nên ta sử dụng binding.sleep được-->
+    <data>
+        <variable name="sleep"
+                  type="com.example.duong.trackmysleepquality.database.SleepNight">
+        </variable>
+        <variable
+                name="clickListener"
+                type="com.example.duong.trackmysleepquality.screentracker.SleepNightListener">
+        </variable>
+
+    </data>
+    <!--Ở layout sẽ có bắt onClick và lấy được đối tượng sleepNight. Sau đó truyền đối tượng vào
+    vào callback ở Listener. Hàm handle callback sẽ có đối tượng và id của đối tượng để thực hiện -->
+    <android.support.constraint.ConstraintLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:onClick="@{() -> clickListener.onClick(sleep)}">
+
+        <ImageView
+                android:id="@+id/quality_image"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:sleepImage="@{sleep}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@drawable/ic_sleep_5" />
+
+        <!--<TextView-->
+                <!--android:id="@+id/sleep_length"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:layout_marginStart="8dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:layout_marginEnd="16dp"-->
+                <!--app:sleepDurationFormatted="@{sleep}"-->
+                <!--app:layout_constraintEnd_toEndOf="parent"-->
+                <!--app:layout_constraintStart_toEndOf="@+id/quality_image"-->
+                <!--app:layout_constraintTop_toTopOf="@+id/quality_image"-->
+                <!--tools:text="Wednesday" />-->
+                <!--&lt;!&ndash; sẽ hiển thị thông qua @binding với value tương ứng định nghĩa-->
+                <!--trong BindingUtil&ndash;&gt;-->
+        <TextView
+                android:id="@+id/quality_string"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:sleepQualityString="@{sleep}"
+                app:layout_constraintEnd_toEndOf="@+id/quality_image"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/quality_image"
+                app:layout_constraintTop_toBottomOf="@+id/quality_image"
+                tools:text="Excellent!!!" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
